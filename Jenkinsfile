@@ -48,6 +48,7 @@ pipeline {
     }
     stage("Test on Docker") {
       agent {
+       label 'Docker'
         docker 'openjdk:8u121-jre'
       }
       steps {
