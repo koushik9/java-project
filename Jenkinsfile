@@ -41,8 +41,9 @@ pipeline {
         label 'Linux'
       }
       steps {
+sh"chmod 755 /var/www/html/rectangles/all/master/*"
  
-   
+   sh "chmod 755 /var/www/html/rectangles/all/development/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
         sh "wget http://lokeshkatamaneni2c.mylabserver.com/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
         sh "java -jar rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar 3 4"
       }
