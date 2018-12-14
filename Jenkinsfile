@@ -32,8 +32,8 @@ pipeline {
         label 'apache'
       }
       steps {
-        sh "if ![ -d '/var/www/html/rectangles/all/${env.BRANCH_NAME}' ]; then mkdir /var/www/html/rectangles/all/${env.BRANCH_NAME}; fi"
-        sh "cp dist/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/${env.BRANCH_NAME}/"
+        sh "if ![ -d '/opt/software/apache/rectangles/all/${env.BRANCH_NAME}' ]; then mkdir /opt/software/apache/rectangles/all/${env.BRANCH_NAME}; fi"
+        sh "cp dist/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar /opt/software/apache/rectangles/all/${env.BRANCH_NAME}/"
       }
     }
     stage("Running on Linux") {
@@ -41,8 +41,8 @@ pipeline {
         label 'Linux'
       }
       steps {
- sh "chmod 755 /var/www/html/rectangles/all/master/*"
-   sh "chmod 755 /var/www/html/rectangles/all/development/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
+ sh "chmod 755 /opt/software/apache/rectangles/all/master/*"
+   sh "chmod 755 /opt/software/apache/rectangles/all/development/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
         sh "wget ec2-54-221-13-244.compute-1.amazonaws.com/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
         sh "java -jar rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar 3 4"
       }
