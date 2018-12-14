@@ -41,14 +41,9 @@ pipeline {
         label 'Linux'
       }
       steps {
-  sh"chmod 755 /opt/software/apache/rectangles/all/master/*"
-   sh"chmod 777 /opt/software/apache/rectangles/all/development/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
-        sh "http://lokeshkatamaneni2c.mylabserver.com/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
-
  sh "chmod 755 /opt/software/apache/rectangles/all/master/*"
    sh "chmod 755 /opt/software/apache/rectangles/all/development/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
         sh "wget ec2-54-221-13-244.compute-1.amazonaws.com/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
-
         sh "java -jar rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar 3 4"
       }
     }
@@ -57,11 +52,7 @@ pipeline {
         docker 'openjdk:8u121-jre'
       }
       steps {
-
-        sh "wget http://lokeshkatamaneni2c.mylabserver.com/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
-
         sh "wget ec2-54-221-13-244.compute-1.amazonaws.com/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
-
         sh "java -jar rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar 3 4"
       }
     }
